@@ -52,17 +52,20 @@ public abstract class Tipo_Empleado {
         System.out.println("Ingrese el salario base del empleado: ");
         double salarioBase = Double.parseDouble(scanner.nextLine());
 
+        System.out.println("Ingrese edad del empleado: ");
+        Integer edad = Integer.valueOf(scanner.nextLine());
+
         switch (tipo) {
             case "manager":
                 System.out.println("Ingrese el bonus del manager: ");
                 double bonus = Double.parseDouble(scanner.nextLine());
-                return new Manager(nombre, salarioBase, bonus);
+                return new Manager(nombre, salarioBase, edad, bonus);
             case "developer":
                 System.out.println("Ingrese los incentivos del developer: ");
                 double incentivos = Double.parseDouble(scanner.nextLine());
-                return new Developer(nombre, salarioBase, incentivos);
+                return new Developer(nombre, salarioBase, edad, incentivos);
             case "empleado":
-                return new EmpleadoBase(nombre, salarioBase);
+                return new EmpleadoBase(nombre, edad, salarioBase);
             default:
                 throw new IllegalArgumentException("Tipo de empleado no reconocido.");
         }

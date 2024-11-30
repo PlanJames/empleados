@@ -4,17 +4,19 @@ import java.util.List;
 
 public class GestorDeEmpleados {
     private List<Tipo_Empleado> empleados;
+    private FiltroEmpleado filtroEmpleado; // Instance of FiltroEmpleado
 
     public GestorDeEmpleados() {
         this.empleados = new ArrayList<>();
+        this.filtroEmpleado = new FiltroEmpleado(); // Initialize the instance
     }
 
     public List<Tipo_Empleado> filtrarEmpleadosPorSalario(double salarioMinimo) {
-        return FiltroEmpleado.filtrarPorSalario(empleados, salarioMinimo);
+        return filtroEmpleado.filtrarPorSalario(empleados, salarioMinimo);
     }
 
     public List<Tipo_Empleado> filtrarEmpleadosPorRol(String rol) {
-        return FiltroEmpleado.filtrarPorRol(empleados, rol);
+        return filtroEmpleado.filtrarPorRol(empleados, rol);
     }
 
     public double obtenerSalarioPromedio() {
