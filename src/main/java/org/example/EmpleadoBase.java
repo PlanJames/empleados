@@ -1,22 +1,13 @@
 package org.example;
 
-public class EmpleadoBase implements Empleado {
-    private String nombre;
-    private double salarioBase;
-
-    public EmpleadoBase(String nombre, double salarioBase) {
-        this.nombre = nombre;
-        this.salarioBase = salarioBase;
-    }
-
-    @Override
-    public String getNombre() {
-        return nombre;
+class EmpleadoBase extends Tipo_Empleado {
+    public EmpleadoBase(String nombre, double salarioBase, Integer edad) {
+        super(nombre, salarioBase, edad);
     }
 
     @Override
     public double calcularSalario() {
-        return salarioBase;
+        return getSalarioBase();
     }
 
     @Override

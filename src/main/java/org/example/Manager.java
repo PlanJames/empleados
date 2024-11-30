@@ -1,24 +1,19 @@
 package org.example;
 
-class Manager implements Empleado {
-    private String nombre;
-    private double salarioBase;
+class Manager extends Tipo_Empleado {
     private double bonus;
 
-    public Manager(String nombre, double salarioBase, double bonus) {
-        this.nombre = nombre;
-        this.salarioBase = salarioBase;
+    public Manager(String nombre, double salarioBase, Integer edad, double bonus) {
+        super(nombre, salarioBase, edad);
+        if (bonus < 0) {
+            throw new IllegalArgumentException("El bonus debe ser mayor o igual a cero.");
+        }
         this.bonus = bonus;
     }
 
     @Override
-    public String getNombre() {
-        return nombre;
-    }
-
-    @Override
     public double calcularSalario() {
-        return salarioBase + bonus;
+        return getSalarioBase() + bonus;
     }
 
     @Override

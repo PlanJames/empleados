@@ -1,24 +1,19 @@
 package org.example;
 
-public class Developer implements Empleado {
-    private String nombre;
-    private double salarioBase;
+class Developer extends Tipo_Empleado {
     private double incentivos;
 
-    public Developer(String nombre, double salarioBase, double incentivos) {
-        this.nombre = nombre;
-        this.salarioBase = salarioBase;
+    public Developer(String nombre, double salarioBase, Integer edad, double incentivos) {
+        super(nombre, salarioBase, edad);
+        if (incentivos < 0) {
+            throw new IllegalArgumentException("Los incentivos deben ser mayores o iguales a cero.");
+        }
         this.incentivos = incentivos;
     }
 
     @Override
-    public String getNombre() {
-        return nombre;
-    }
-
-    @Override
     public double calcularSalario() {
-        return salarioBase + incentivos;
+        return getSalarioBase() + incentivos;
     }
 
     @Override

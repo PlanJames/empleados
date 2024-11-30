@@ -1,56 +1,53 @@
 package org.example;
 import java.util.*;
+import java.util.Scanner;
 
 public class Aplicacion {
     public void ejecutar() {
         Scanner scanner = new Scanner(System.in);
-        List<Empleado> empleados = new ArrayList<>();
-        GestorDeEmpleados gestor = new GestorDeEmpleados(empleados);
-        EmpleadoCreator creator = new EmpleadoCreator();
-
-        empleados.add(creator.crearEmpleadoPorTeclado());
-        empleados.add(creator.crearEmpleadoPorTeclado());
+        GestorDeEmpleados gestor = new GestorDeEmpleados();
 
         boolean continuar = true;
         while (continuar) {
             System.out.println("\nSeleccione una opción:");
             System.out.println("1. Ver empleados con salario mayor a X");
             System.out.println("2. Ver empleados de un rol específico");
-            System.out.println("3. Ver empleados mayores de X años");
-            System.out.println("4. Agregar nuevo empleado");
-            System.out.println("5. Mostrar salario promedio");
-            System.out.println("6. Salir");
+            System.out.println("3. Agregar nuevo empleado");
+            System.out.println("4. Mostrar salario promedio");
+            System.out.println("5. Salir");
             int opcion = Integer.parseInt(scanner.nextLine());
 
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese el salario mínimo: ");
                     double salarioMinimo = Double.parseDouble(scanner.nextLine());
-                    List<Empleado> empleadosConSalarioMinimo = gestor.filtrarEmpleados(salarioMinimo);
-                    empleadosConSalarioMinimo.forEach(e -> System.out.println(e.getNombre()));
+                    var empleadosConSalario = gestor.filtrarPorSalario(salarioMinimo);
+                    if (empleadosConSalario.isEmpty()) {
+                        System.out.println("No hay empleados con salario mayor a " + salarioMinimo);
+                    } else {
+                        empleadosConSalario.forEach(e -> System.out.println(e));
+                    }
                     break;
                 case 2:
-                    System.out.println("Ingrese el rol (manager, developer, empleado): ");
+                    System.out.println("Ingrese el rol (manager, developer, empleado base): ");
                     String rol = scanner.nextLine();
-                    List<Empleado> empleadosPorRol = gestor.filtrarPorRol(rol);
-                    empleadosPorRol.forEach(e -> System.out.println(e.getNombre()));
+                    var empleadosPorRol = gestor.filtrarEmpleadosPorRol(rol);
+                    if (empleadosPorRol.isEmpty()) {
+                        System.out.println("No hay empleados con el rol: " + rol);
+                    } else {
+                        empleadosPorRol.forEach(e -> System.out.println(e));
+                    }
                     break;
                 case 3:
-                    System.out.println("Ingrese la edad mínima: ");
-                    int edadMinima = Integer.parseInt(scanner.nextLine());
-                    List<Empleado> empleadosPorEdad = gestor.filtrarPorEdad(edadMinima);
-                    empleadosPorEdad.forEach(e -> System.out.println(e.getNombre()));
+                    Tipo_Empleado nuevoEmpleado = Tipo_Empleado.crearEmpleadoDesdeTeclado();
+                    gestor.agregarEmpleado(nuevoEmpleado);
+                    System.out.println("Empleado agregado: " + nuevoEmpleado);
                     break;
                 case 4:
-                    Empleado nuevoEmpleado = creator.crearEmpleadoPorTeclado();
-                    gestor.agregarEmpleado(nuevoEmpleado);
-                    System.out.println("Empleado agregado.");
-                    break;
-                case 5:
                     double salarioPromedio = gestor.obtenerSalarioPromedio();
                     System.out.println("El salario promedio de los empleados es: " + salarioPromedio);
                     break;
-                case 6:
+                case 5:
                     continuar = false;
                     System.out.println("Programa terminado");
                     break;
