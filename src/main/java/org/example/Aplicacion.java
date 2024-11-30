@@ -52,7 +52,7 @@ public class Aplicacion {
                     break;
                 case 6:
                     continuar = false;
-                    System.out.println("¡Hasta luego!");
+                    System.out.println("Programa terminado");
                     break;
                 default:
                     System.out.println("Opción no válida.");
