@@ -1,14 +1,17 @@
 package org.example;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GestorDeEmpleados {
     private List<Tipo_Empleado> empleados;
-    private FiltroEmpleado filtroEmpleado; // Instance of FiltroEmpleado
+    private FiltroEmpleado filtroEmpleado;
 
     public GestorDeEmpleados() {
         this.empleados = new ArrayList<>();
-        this.filtroEmpleado = new FiltroEmpleado(); // Initialize the instance
+        this.filtroEmpleado = new FiltroEmpleado();
     }
 
     public List<Tipo_Empleado> filtrarEmpleadosPorSalario(double salarioMinimo) {
@@ -17,6 +20,10 @@ public class GestorDeEmpleados {
 
     public List<Tipo_Empleado> filtrarEmpleadosPorRol(String rol) {
         return filtroEmpleado.filtrarPorRol(empleados, rol);
+    }
+
+    public List<Tipo_Empleado> filtrarEmpleadosPorEdad(Integer edad) {
+        return filtroEmpleado.filtrarPorEdad(empleados, edad);
     }
 
     public double obtenerSalarioPromedio() {
@@ -34,6 +41,33 @@ public class GestorDeEmpleados {
     }
 
     public List<Tipo_Empleado> getEmpleados() {
-        return new ArrayList<>(empleados); // Return a copy to maintain encapsulation
+        return empleados;
+    }
+
+    public List<Tipo_Empleado> obtenerTop5SalarioMayor() {
+        return filtroEmpleado.obtenerTop5PorSalario(empleados);
+    }
+
+    public List<Tipo_Empleado> obtenerTop5MasViejosMayorSalario() {
+        return filtroEmpleado.obtener5MasViejosPorMayorSalario(empleados);
+
+    }
+
+    public List<Tipo_Empleado> obtenerTop5MasViejosMenorSalario() {
+        return filtroEmpleado.obtener5MasViejosPorMenorSalario(empleados);
+
+    }
+
+    public List<Tipo_Empleado> obtenerTop5MejorRendimiento() {
+        return filtroEmpleado.filtrarPorMejorRendimiento(empleados);
+
+    }
+
+    public List<Tipo_Empleado> obtenerTop5PeorRendimiento() {
+        return filtroEmpleado.filtrarPorPeorRendimiento(empleados);
+    }
+
+    public void eliminarEmpleadoPorNombre(List<Tipo_Empleado> empleados, String nombre) {
+        empleados.removeIf(empleado -> empleado.getNombre().equalsIgnoreCase(nombre));
     }
 }

@@ -13,7 +13,7 @@ class Manager extends Tipo_Empleado {
 
     @Override
     public double calcularSalario() {
-        return getSalarioBase() + bonus;
+        return getSalarioBase() * bonus;
     }
 
     @Override
