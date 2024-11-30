@@ -52,6 +52,9 @@ public abstract class Tipo_Empleado {
         System.out.println("Ingrese el salario base del empleado: ");
         double salarioBase = Double.parseDouble(scanner.nextLine());
 
+        System.out.println("Ingrese edad del empleado: ");
+        Integer edad = Integer.valueOf(scanner.nextLine());
+
         switch (tipo) {
             case "manager":
                 System.out.println("Ingrese el bonus del manager: ");

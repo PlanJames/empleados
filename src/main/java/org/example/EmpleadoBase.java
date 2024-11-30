@@ -1,7 +1,7 @@
 package org.example;
 
 class EmpleadoBase extends Tipo_Empleado {
-    public EmpleadoBase(String nombre, double salarioBase, Integer edad) {
+    public EmpleadoBase(String nombre, Integer edad, double salarioBase) {
         super(nombre, salarioBase, edad);
     }
 

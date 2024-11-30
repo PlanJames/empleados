@@ -1,5 +1,4 @@
 package org.example;
-import java.util.*;
 import java.util.Scanner;
 
 public class Aplicacion {
@@ -21,7 +20,7 @@ public class Aplicacion {
                 case 1:
                     System.out.println("Ingrese el salario mínimo: ");
                     double salarioMinimo = Double.parseDouble(scanner.nextLine());
-                    var empleadosConSalario = gestor.filtrarPorSalario(salarioMinimo);
+                    var empleadosConSalario = gestor.filtrarEmpleadosPorSalario(salarioMinimo);
                     if (empleadosConSalario.isEmpty()) {
                         System.out.println("No hay empleados con salario mayor a " + salarioMinimo);
                     } else {
