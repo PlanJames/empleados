@@ -4,7 +4,7 @@ public abstract class Tipo_Empleado {
     private final String nombre;
     private final double salarioBase;
     private final Integer edad;
-    private final double rendimiento; // Added performance indicator
+    private final double rendimiento;
 
     public Tipo_Empleado(String nombre, double salarioBase, Integer edad) {
         if (nombre == null || nombre.isBlank()) {
@@ -20,7 +20,7 @@ public abstract class Tipo_Empleado {
         this.nombre = nombre;
         this.salarioBase = salarioBase;
         this.edad = edad;
-        this.rendimiento = Math.random() * 100; // Example: randomly generated performance percentage
+        this.rendimiento = Math.random() * 100;
     }
 
     public double getSalarioBase() {
