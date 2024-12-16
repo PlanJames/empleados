@@ -1,0 +1,7 @@
+Rol: Manager
+Nombre: jose
+Apellido: lencina
+Edad: 18
+Salario Base: 100.0
+Bono: 100.0
+
